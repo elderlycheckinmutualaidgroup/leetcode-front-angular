@@ -1,0 +1,78 @@
+<app-home></app-home>
+
+<form style="text-align: center">
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Search</mat-label>
+    <input
+      type="text"
+      matInput
+      (keyup)="onKey($event)"
+      [formControl]="searchResult"
+      [matAutocomplete]="auto"
+    />
+    <mat-autocomplete #auto="matAutocomplete">
+      <div>
+        <mat-option *ngFor="let option of filteredOptions" [value]="option">
+          {{ option }}
+        </mat-option>
+      </div>
+    </mat-autocomplete>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Search By...</mat-label>
+    <mat-select
+      [(ngModel)]="selectedsearchType"
+      [ngModelOptions]="{ standalone: true }"
+    >
+      <mat-option *ngFor="let e of searchTypes" [value]="e">
+        {{ e }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button type="button" class="btn btn-primary" (click)="search()">
+    Search
+  </button>
+</form>
+
+<div class="mat-elevation-z8">
+  <table mat-table style="width: 100%" [dataSource]="dataSource">
+    <ng-container matColumnDef="questionName">
+      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <td mat-cell *matCellDef="let element">
+        <strong>{{ element.questionName }}</strong>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="questionTag">
+      <th mat-header-cell *matHeaderCellDef>Tag</th>
+      <td mat-cell *matCellDef="let element">
+        <mat-chip-list
+          style="display: inline-block"
+          *ngFor="let tag of element.questionTag"
+          aria-orientation="horizontal"
+        >
+          <mat-chip disabled color="primary">{{ tag }}</mat-chip>
+        </mat-chip-list>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="userName">
+      <th mat-header-cell *matHeaderCellDef>Person</th>
+      <td mat-cell *matCellDef="let element">{{ element.userName }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="questionDate">
+      <th mat-header-cell *matHeaderCellDef>Date</th>
+      <td mat-cell *matCellDef="let element">{{ element.questionDate }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr
+      mat-row
+      class="example-element-row"
+      (click)="clickedQuestion(row)"
+      *matRowDef="let row; columns: displayedColumns"
+    ></tr>
+  </table>
+  <mat-paginator [pageSize]="3" hidePageSize> </mat-paginator>
+</div>

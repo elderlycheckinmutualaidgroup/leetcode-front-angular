@@ -1,0 +1,7 @@
+.spacer {
+  margin-left: 5vh;
+}
+.rightFixed {
+  position: fixed;
+  margin-left: 85vw;
+}

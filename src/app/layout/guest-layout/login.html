@@ -1,0 +1,10 @@
+<div mat-dialog-content>
+  <p>Enter Your Username</p>
+  <input matInput type="text" (keyup)="onUserNameKey($event)" />
+  <p>Enter Your Password</p>
+  <input matInput type="text" (keyup)="onPasswordKey($event)" />
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="onLoginClick()">Login</button>
+</div>

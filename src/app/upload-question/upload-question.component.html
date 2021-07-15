@@ -1,0 +1,86 @@
+<app-home></app-home>
+<div class="center">
+  <mat-card class="card">
+    <mat-card-title>
+      <textarea
+        rows="1"
+        class="form-control"
+        style="text-align: center"
+        (keyup)="onTitleKey($event)"
+        placeholder="Quesiton Name"
+        aria-label="With textarea"
+      ></textarea>
+    </mat-card-title>
+    <div>
+      <mat-card-subtitle> {{ currentTime }} </mat-card-subtitle>
+      <mat-card-subtitle>{{ userName }} </mat-card-subtitle>
+    </div>
+    <h1 class="display-2">Current tag</h1>
+    <mat-card-subtitle>
+      <mat-card class="container">
+        <mat-chip-list
+          cdkDropList
+          #currentTagsList="cdkDropList"
+          [cdkDropListData]="currentTags"
+          [cdkDropListConnectedTo]="[allTagsList]"
+          (cdkDropListDropped)="drop($event)"
+          class="list"
+        >
+          <div
+            aria-label="Fish selection"
+            *ngFor="let tag of currentTags"
+            cdkDrag
+          >
+            <mat-chip>{{ tag }}</mat-chip>
+          </div>
+        </mat-chip-list>
+      </mat-card>
+    </mat-card-subtitle>
+    <h1 class="display-2">All tag</h1>
+
+    <mat-card-subtitle>
+      <mat-card class="container">
+        <mat-chip-list
+          cdkDropList
+          #allTagsList="cdkDropList"
+          [cdkDropListData]="allTags"
+          [cdkDropListConnectedTo]="[currentTagsList]"
+          (cdkDropListDropped)="drop($event)"
+          class="list"
+        >
+          <div aria-label="Fish selection" *ngFor="let tag of allTags" cdkDrag>
+            <mat-chip>{{ tag }}</mat-chip>
+          </div>
+        </mat-chip-list>
+      </mat-card>
+    </mat-card-subtitle>
+    <mat-card class="marginTop">
+      <h1 class="display-2">Quesiton Description</h1>
+      <textarea
+        rows="15"
+        class="form-control"
+        (keyup)="onDescriptionKey($event)"
+        placeholder=". . ."
+        aria-label="With textarea"
+      ></textarea>
+    </mat-card>
+    <mat-card class="marginTop">
+      <h1 class="display-2">Quesiton Solution</h1>
+      <textarea
+        rows="15"
+        class="form-control"
+        (keyup)="onSolutionKey($event)"
+        placeholder=". . ."
+        aria-label="With textarea"
+      ></textarea>
+    </mat-card>
+    <button
+      type="button"
+      class="btn btn-primary"
+      style="margin-top: 3vh"
+      (click)="upload()"
+    >
+      Upload
+    </button>
+  </mat-card>
+</div>

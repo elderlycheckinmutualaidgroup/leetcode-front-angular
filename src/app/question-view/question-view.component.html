@@ -1,0 +1,27 @@
+<app-home></app-home>
+<div class="center">
+  <mat-card class="card">
+    <mat-card-title>
+      <h1 class="display-2">{{ question.questionName }}</h1>
+    </mat-card-title>
+    <div>
+      <mat-card-subtitle> {{ question.questionDate }} </mat-card-subtitle>
+      <mat-card-subtitle>{{ question.userName }} </mat-card-subtitle>
+    </div>
+    <div *ngFor="let tag of question.questionTag">
+      <span class="badge badge-info">{{ tag }}</span>
+    </div>
+    <mat-card class="marginTop">
+      <h1 class="display-2">Quesiton Description</h1>
+      <textarea rows="20" class="form-control" readonly>
+        {{ question.questionDescription }}
+      </textarea>
+    </mat-card>
+    <mat-card class="marginTop">
+      <h1 class="display-2">Quesiton Answer</h1>
+      <textarea class="form-control textarea-autosize" rows="20" readonly>
+        {{ question.questionAnswer }}
+      </textarea>
+    </mat-card>
+  </mat-card>
+</div>

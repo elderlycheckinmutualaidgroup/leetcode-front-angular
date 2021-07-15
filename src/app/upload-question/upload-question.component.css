@@ -1,0 +1,32 @@
+.container {
+  width: 80vw;
+  max-width: 100%;
+  display: inline-block;
+  vertical-align: top;
+  box-shadow: 1px 1px 1px 1px #888888;
+}
+
+.list {
+  min-height: 8vh;
+  background: white;
+  display: block;
+}
+.marginTop {
+  margin-top: 3vh;
+}
+
+.center {
+  text-align: center;
+  margin-top: 3vh;
+  width: 90vw;
+}
+.card {
+  margin-left: 10vw;
+}
+.cdk-drag-placeholder {
+  opacity: 0;
+}
+
+.cdk-drag-animating {
+  transition: transform 500ms cubic-bezier(0, 0, 0.2, 1);
+}
