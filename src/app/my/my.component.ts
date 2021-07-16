@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, ViewChild, AfterViewInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { FormControl } from '@angular/forms';
@@ -27,16 +27,16 @@ export class MyComponent implements AfterViewInit {
   filteredOptions: string[] = [];
   searchResult = new FormControl('');
   uniqueQuestionNameSet = new Set<string>();
+  ELEMENT_DATA: Question[] = [];
 
   async getAll() {
     var userName = sessionStorage.getItem('user') || '';
-    console.log(userName);
     var temp = await this.service.getByUserName(userName).then(
       (responseDate) => {
         this.ELEMENT_DATA = responseDate;
       },
       (responseError) => {
-        // window.location.reload();
+        alert('server error');
       }
     );
   }
@@ -90,6 +90,4 @@ export class MyComponent implements AfterViewInit {
     this.dataSource = new MatTableDataSource(temp);
     this.ngAfterViewInit();
   }
-
-  ELEMENT_DATA: Question[] = [];
 }

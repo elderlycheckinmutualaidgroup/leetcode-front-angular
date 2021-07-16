@@ -8,17 +8,58 @@ import { QuestionServiceService } from '../services/question-service/question-se
 import { QuestionDetail } from '../interfaces/questionDetailInterface';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
+
 @Component({
   selector: 'app-my-view',
   templateUrl: './my-view.component.html',
   styleUrls: ['./my-view.component.css'],
 })
 export class MyViewComponent implements OnInit {
+  constructor(
+    private service: QuestionServiceService,
+    private route: ActivatedRoute,
+    private formBuilder: FormBuilder,
+    private router: Router
+  ) {
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+
+    this.currentTime = mm + '/' + dd + '/' + yyyy;
+
+    this.questionForm = this.formBuilder.group({
+      questionName: [''],
+      questionDescription: [''],
+      questionAnswer: [''],
+    });
+  }
+
+  markdown = `## Markdown __rulez__!
+---
+public
+### Syntax highlight
+\`\`\`java
+public static void main() {
+  
+}
+\`\`\`
+
+### Lists
+1. Ordered list
+2. Another bullet point
+   - Unordered list
+   - Another unordered bullet
+
+### Blockquote
+> Blockquote to the max`;
+
   public showButton: boolean = false;
   public showEdit: boolean = false;
   question: QuestionDetail | undefined;
   public currentTime: string = '';
-
+  currentTags: string[] = [];
+  questionForm: FormGroup;
   allTags = [
     'Array',
     'String',
@@ -40,29 +81,6 @@ export class MyViewComponent implements OnInit {
     'Recursion',
   ];
 
-  currentTags: string[] = [];
-  questionForm: FormGroup;
-
-  constructor(
-    private service: QuestionServiceService,
-    private route: ActivatedRoute,
-    private formBuilder: FormBuilder,
-    private router: Router
-  ) {
-    var today = new Date();
-    var dd = String(today.getDate()).padStart(2, '0');
-    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-    var yyyy = today.getFullYear();
-
-    this.currentTime = mm + '/' + dd + '/' + yyyy;
-
-    this.questionForm = this.formBuilder.group({
-      questionName: [''],
-      questionDescription: [''],
-      questionAnswer: [''],
-    });
-  }
-
   async ngOnInit() {
     var id = this.route.snapshot.paramMap.get('questionId') || '';
     await this.get(id);
@@ -74,12 +92,13 @@ export class MyViewComponent implements OnInit {
     });
   }
   async get(id: string) {
-    var temp = await this.service.getOneQuestion(id).then(
+    await this.service.getOneQuestion(id).then(
       (responseData) => {
-        console.log(responseData, 'response Data');
         this.question = responseData;
       },
-      (responseError) => {}
+      (responseError) => {
+        alert('server error');
+      }
     );
   }
   edit(): void {
@@ -97,11 +116,13 @@ export class MyViewComponent implements OnInit {
       questionDate: this.currentTime,
       userName: this.question?.userName,
     };
-    var temp = this.service.update(questionDetail).then(
+    await this.service.update(questionDetail).then(
       (responseDate) => {
         window.location.reload();
       },
-      (responseError) => {}
+      (responseError) => {
+        alert('server error');
+      }
     );
   }
   async cancle() {
@@ -119,11 +140,13 @@ export class MyViewComponent implements OnInit {
   async delete() {
     var id = this.route.snapshot.paramMap.get('questionId') || '';
 
-    const temp = await this.service.delete(id).then(
+    await this.service.delete(id).then(
       (responseData) => {
         this.router.navigate(['/my']);
       },
-      (responseError) => {}
+      (responseError) => {
+        alert('server error');
+      }
     );
   }
 

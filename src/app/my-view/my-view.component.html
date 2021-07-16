@@ -1,4 +1,7 @@
+<div markdown [text]="markdown"></div>
+
 <app-home></app-home>
+
 <div style="text-align: center">
   <button *ngIf="!showButton" (click)="edit()">Edit</button>
   <button *ngIf="showButton" (click)="save()">Save</button>
@@ -99,7 +102,6 @@
           formControlName="questionDescription"
           rows="15"
           class="form-control"
-          placeholder=". . ."
           aria-label="With textarea"
         ></textarea>
       </mat-card>
@@ -109,7 +111,6 @@
           formControlName="questionAnswer"
           rows="15"
           class="form-control"
-          placeholder=". . ."
           aria-label="With textarea"
         ></textarea>
       </mat-card>

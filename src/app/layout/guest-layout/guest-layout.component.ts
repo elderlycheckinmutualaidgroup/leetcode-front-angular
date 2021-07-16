@@ -58,12 +58,11 @@ export class DialogOverviewExampleDialog {
   }
 
   onLoginClick(): void {
-    this.service.login(this.data.userName, this.data.password).subscribe(
+    this.service.login(this.data.userName, this.data.password).then(
       (responseData) => {
         console.log(responseData);
         if (responseData.message == 'yes') {
           sessionStorage.setItem('user', this.data.userName);
-
           this.dialogRef.close();
           this.router.navigate(['/']).then(() => {
             window.location.reload();

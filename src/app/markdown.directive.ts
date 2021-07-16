@@ -6,10 +6,8 @@ const marked = require('marked');
 })
 export class MarkdownDirective implements OnChanges {
   @Input() text: any;
-  @Input() language: string;
   constructor(public elementRef: ElementRef) {
     this.text = '';
-    this.language = '';
   }
 
   ngOnChanges() {
@@ -28,8 +26,6 @@ export class MarkdownDirective implements OnChanges {
       smartypants: false,
       xhtml: false,
     });
-    console.log(marked(this.text));
-
     this.elementRef.nativeElement.innerHTML = marked.parse(marked(this.text));
   }
 }

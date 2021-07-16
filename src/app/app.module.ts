@@ -16,11 +16,6 @@ import { MatSelectModule } from '@angular/material/select';
 import { HttpClientModule } from '@angular/common/http';
 import { MatChipsModule } from '@angular/material/chips';
 import { DragDropModule } from '@angular/cdk/drag-drop';
-import 'prismjs';
-import 'prismjs/components/prism-typescript';
-import 'prismjs/components/prism-java';
-import 'prismjs/components/prism-javascript';
-import 'prismjs/components/prism-python';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -36,6 +31,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MyComponent } from './my/my.component';
 import { MyViewComponent } from './my-view/my-view.component';
 import { MarkdownDirective } from './markdown.directive';
+
+import 'prismjs';
+import 'prismjs/components/prism-typescript';
+import 'prismjs/components/prism-java';
+import 'prismjs/components/prism-javascript';
+import 'prismjs/components/prism-python';
 
 @NgModule({
   declarations: [

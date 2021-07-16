@@ -14,14 +14,18 @@ const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'question', component: QuestionComponent },
   { path: 'question-view/:questionId', component: QuestionViewComponent },
+  { path: 'ranking', component: RankingComponent },
+  { path: 'topic', component: QuestionComponent },
   {
     path: 'uploadQuestion',
     component: UploadQuestionComponent,
     canActivate: [AuthServiceService],
   },
-  { path: 'ranking', component: RankingComponent },
-  { path: 'topic', component: QuestionComponent },
-  { path: 'my', component: MyComponent, canActivate: [AuthServiceService] },
+  {
+    path: 'my',
+    component: MyComponent,
+    canActivate: [AuthServiceService],
+  },
   {
     path: 'my-view/:questionId',
     component: MyViewComponent,
