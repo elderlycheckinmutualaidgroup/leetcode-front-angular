@@ -3,4 +3,5 @@ export interface UserRecord {
   userCurrentRecord: number;
   userHistoryRecord: number;
   userName: string;
+  _id: string;
 }

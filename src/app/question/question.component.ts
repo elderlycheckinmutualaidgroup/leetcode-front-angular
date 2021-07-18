@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, ViewChild, AfterViewInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { FormControl } from '@angular/forms';
@@ -12,14 +12,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./question.component.css'],
 })
 export class QuestionComponent implements AfterViewInit {
-  markdown = `
-  ---
-  \`\`\`java
-  public static void main() {
-    System.out.println("Hello World");
-  }
-  \`\`\`
-  `;
   constructor(
     private router: Router,
     private service: QuestionServiceService
@@ -41,7 +33,7 @@ export class QuestionComponent implements AfterViewInit {
   selectedsearchType: string = '';
 
   async getAll() {
-    var temp = await this.service.getAllQuestions().then(
+    await this.service.getAllQuestions().then(
       (responseDate) => {
         this.ELEMENT_DATA = responseDate;
       },
@@ -53,7 +45,6 @@ export class QuestionComponent implements AfterViewInit {
 
   async ngOnInit() {
     await this.getAll();
-    console.log('hello');
     this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
     this.ELEMENT_DATA.forEach((value) => {
       this.uniqueQuestionNameSet.add(value.questionName);

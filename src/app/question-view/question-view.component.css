@@ -1,27 +1,3 @@
-.container {
-  width: 80vw;
-  max-width: 100%;
-  display: inline-block;
-  vertical-align: top;
-  box-shadow: 1px 1px 1px 1px #888888;
-}
-
-textarea.textarea-autosize {
-  padding-top: 10px;
-  padding-bottom: 25px; /* increased! */
-  width: 100%;
-  display: block;
-}
-
-.list {
-  min-height: 8vh;
-  background: white;
-  display: block;
-}
-.marginTop {
-  margin-top: 3vh;
-}
-
 .center {
   text-align: center;
   margin-top: 3vh;

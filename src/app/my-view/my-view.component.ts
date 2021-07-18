@@ -35,16 +35,6 @@ export class MyViewComponent implements OnInit {
     });
   }
 
-  markdown = `
----
-\`\`\`java
-public static void main() {
-  System.out.println("Hello World");
-}
-\`\`\`
-* high
-`;
-
   public showButton: boolean = false;
   public showEdit: boolean = false;
   question: QuestionDetail | undefined;

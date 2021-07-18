@@ -1,8 +1,9 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, ViewChild, AfterViewInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { UserRecordServiceService } from '../services/userRecord-service/user-record-service.service';
 import { UserRecord } from '../interfaces/userRecordInterface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-ranking',
@@ -10,7 +11,10 @@ import { UserRecord } from '../interfaces/userRecordInterface';
   styleUrls: ['./ranking.component.css'],
 })
 export class RankingComponent implements AfterViewInit {
-  constructor(private service: UserRecordServiceService) {}
+  constructor(
+    private service: UserRecordServiceService,
+    private router: Router
+  ) {}
   @ViewChild(MatPaginator) paginator?: MatPaginator;
   dataSource = new MatTableDataSource<any>();
   displayedColumns: string[] = [
@@ -19,17 +23,21 @@ export class RankingComponent implements AfterViewInit {
     'userCurrentRecord',
     'userHistoryRecord',
   ];
+  ELEMENT_DATA: UserRecord[] = [];
 
   async getAll() {
-    var temp = await this.service.getAll().then(
+    await this.service.getAll().then(
       (responseDate) => {
-        console.log(responseDate);
         this.ELEMENT_DATA = responseDate;
       },
       (responseError) => {
-        // window.location.reload();
+        alert('server error');
       }
     );
+  }
+
+  clickedUser(row: any) {
+    this.router.navigate(['/user-detail', row._id]);
   }
 
   async ngOnInit() {
@@ -39,5 +47,4 @@ export class RankingComponent implements AfterViewInit {
   ngAfterViewInit() {
     if (this.paginator) this.dataSource.paginator = this.paginator;
   }
-  ELEMENT_DATA: UserRecord[] = [];
 }

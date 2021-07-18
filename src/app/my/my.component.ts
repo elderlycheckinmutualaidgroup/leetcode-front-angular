@@ -28,10 +28,10 @@ export class MyComponent implements AfterViewInit {
   searchResult = new FormControl('');
   uniqueQuestionNameSet = new Set<string>();
   ELEMENT_DATA: Question[] = [];
+  public userName = sessionStorage.getItem('user') || '';
 
   async getAll() {
-    var userName = sessionStorage.getItem('user') || '';
-    var temp = await this.service.getByUserName(userName).then(
+    await this.service.getByUserName(this.userName).then(
       (responseDate) => {
         this.ELEMENT_DATA = responseDate;
       },

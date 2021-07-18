@@ -31,6 +31,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MyComponent } from './my/my.component';
 import { MyViewComponent } from './my-view/my-view.component';
 import { MarkdownDirective } from './markdown.directive';
+import { UserDetailComponent } from './user-detail/user-detail.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { MarkdownDirective } from './markdown.directive';
     MyComponent,
     MyViewComponent,
     MarkdownDirective,
+    UserDetailComponent,
   ],
   imports: [
     BrowserModule,

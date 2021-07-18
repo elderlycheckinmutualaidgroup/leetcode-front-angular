@@ -11,17 +11,21 @@
     <div *ngFor="let tag of question.questionTag">
       <span class="badge badge-info">{{ tag }}</span>
     </div>
-    <mat-card class="marginTop">
-      <h1 class="display-2">Quesiton Description</h1>
-      <textarea rows="20" class="form-control" readonly>
-        {{ question.questionDescription }}
-      </textarea>
+    <h1 class="display-2" style="margin-top: 3vh">Quesiton Description</h1>
+    <mat-card>
+      <div
+        markdown
+        [text]="question.questionDescription"
+        style="text-align: left"
+      ></div>
     </mat-card>
-    <mat-card class="marginTop">
-      <h1 class="display-2">Quesiton Answer</h1>
-      <textarea class="form-control textarea-autosize" rows="20" readonly>
-        {{ question.questionAnswer }}
-      </textarea>
+    <h1 class="display-2" style="margin-top: 3vh">Quesiton Answer</h1>
+    <mat-card>
+      <div
+        markdown
+        [text]="question.questionAnswer"
+        style="text-align: left"
+      ></div>
     </mat-card>
   </mat-card>
 </div>

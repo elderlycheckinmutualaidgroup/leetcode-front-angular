@@ -8,6 +8,7 @@ import { QuestionComponent } from './question/question.component';
 import { RankingComponent } from './ranking/ranking.component';
 import { AuthServiceService } from './services/auth-service/auth-service.service';
 import { UploadQuestionComponent } from './upload-question/upload-question.component';
+import { UserDetailComponent } from './user-detail/user-detail.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -16,6 +17,10 @@ const routes: Routes = [
   { path: 'question-view/:questionId', component: QuestionViewComponent },
   { path: 'ranking', component: RankingComponent },
   { path: 'topic', component: QuestionComponent },
+  {
+    path: 'user-detail/:userId',
+    component: UserDetailComponent,
+  },
   {
     path: 'uploadQuestion',
     component: UploadQuestionComponent,
