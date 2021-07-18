@@ -21,12 +21,12 @@ export class MyViewComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router
   ) {
-    var today = new Date();
-    var dd = String(today.getDate()).padStart(2, '0');
-    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-    var yyyy = today.getFullYear();
-
-    this.currentTime = mm + '/' + dd + '/' + yyyy;
+    this.currentTime =
+      String(new Date().getDate()).padStart(2, '0') +
+      '/' +
+      String(new Date().getMonth() + 1).padStart(2, '0') +
+      '/' +
+      new Date().getFullYear();
 
     this.questionForm = this.formBuilder.group({
       questionName: [''],
@@ -103,7 +103,7 @@ public static void main() {
       questionName: this.questionForm.value.questionName,
       questionTag: this.currentTags,
       questionDescription: this.questionForm.value.questionDescription,
-      questionAnswer: this.questionForm.value.questionSolution,
+      questionAnswer: this.questionForm.value.questionAnswer,
       questionDate: this.currentTime,
       userName: this.question?.userName,
     };
