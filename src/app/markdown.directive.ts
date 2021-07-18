@@ -8,9 +8,6 @@ export class MarkdownDirective implements OnChanges {
   @Input() text: any;
   constructor(public elementRef: ElementRef) {
     this.text = '';
-  }
-
-  ngOnChanges() {
     marked.setOptions({
       renderer: new marked.Renderer(),
       highlight: function (code: any, lang: any) {
@@ -26,6 +23,9 @@ export class MarkdownDirective implements OnChanges {
       smartypants: false,
       xhtml: false,
     });
-    this.elementRef.nativeElement.innerHTML = marked.parse(marked(this.text));
+  }
+
+  ngOnChanges() {
+    this.elementRef.nativeElement.innerHTML = marked(this.text);
   }
 }

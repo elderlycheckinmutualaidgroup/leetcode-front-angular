@@ -7,23 +7,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'leetcode-front';
-  language = 'java';
-  markdown = `## Markdown __rulez__!
+  markdown = `
 ---
-public
-### Syntax highlight
 \`\`\`java
 public static void main() {
-  
+  System.out.println("Hello World");
 }
 \`\`\`
-
-### Lists
-1. Ordered list
-2. Another bullet point
-   - Unordered list
-   - Another unordered bullet
-
-### Blockquote
-> Blockquote to the max`;
+`;
 }

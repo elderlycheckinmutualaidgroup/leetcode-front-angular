@@ -32,12 +32,6 @@ import { MyComponent } from './my/my.component';
 import { MyViewComponent } from './my-view/my-view.component';
 import { MarkdownDirective } from './markdown.directive';
 
-import 'prismjs';
-import 'prismjs/components/prism-typescript';
-import 'prismjs/components/prism-java';
-import 'prismjs/components/prism-javascript';
-import 'prismjs/components/prism-python';
-
 @NgModule({
   declarations: [
     AppComponent,

@@ -12,6 +12,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./question.component.css'],
 })
 export class QuestionComponent implements AfterViewInit {
+  markdown = `
+  ---
+  \`\`\`java
+  public static void main() {
+    System.out.println("Hello World");
+  }
+  \`\`\`
+  `;
   constructor(
     private router: Router,
     private service: QuestionServiceService
