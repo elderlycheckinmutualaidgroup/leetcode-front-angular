@@ -50,7 +50,7 @@
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
-              "buildOptimizer": false,
+              "buildOptimizer": true,
               "budgets": [
                 {
                   "type": "initial",
@@ -90,6 +90,7 @@
             "main": "src/test.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
+            "aot": false,
             "karmaConfig": "karma.conf.js",
             "assets": [
               "src/favicon.ico",
